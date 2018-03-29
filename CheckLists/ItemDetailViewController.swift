@@ -26,11 +26,11 @@ class ItemDetailViewController: UITableViewController, UITextFieldDelegate {
     
     @IBAction func done() {
         if let item = TextFieldSaisieItem.text {
-        if let edit = itemToEdit {
-            itemToEdit.text = item
-            delegate.itemDetailViewController(self, didFinishEditingItem: itemToEdit)
-        } else {
-            delegate.itemDetailViewController(self, didFinishAddingItem: CheckListItem(pText: item))
+            if (itemToEdit) != nil {
+                itemToEdit.text = item
+                delegate.itemDetailViewController(self, didFinishEditingItem: itemToEdit)
+            } else {
+                delegate.itemDetailViewController(self, didFinishAddingItem: CheckListItem(pText: item))
             }
         }
     }

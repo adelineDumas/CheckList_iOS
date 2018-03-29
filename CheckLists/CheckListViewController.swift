@@ -12,15 +12,25 @@ class CheckListViewController: UITableViewController {
     
     var ListCheckItem : Array<CheckListItem> = []
     
+    var documentDirectory : URL = FileManager.default.urls(for: FileManager.SearchPathDirectory.documentDirectory, in: FileManager.SearchPathDomainMask.userDomainMask).first!
+    var dataFileURL : URL = URL(fileURLWithPath: "")
+    
+    var list : CheckList!
+    
+    required init?(coder aDecoder: NSCoder) {
+        super.init(coder: aDecoder)
+        
+        let file = "data.json"
+        dataFileURL = documentDirectory.appendingPathComponent(file)
+        self.loadCheckListItems()
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        ListCheckItem.append(CheckListItem(pText : "Finir le cours d'iOS"))
-        ListCheckItem.append(CheckListItem(pText : "Mettre à jour XCode"))
-        ListCheckItem.append(CheckListItem(pText : "Finir PokeCard"))
-        ListCheckItem.append(CheckListItem(pText : "Faire le droit"))
-
+        
+        self.navigationItem.title = list.name
     }
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
@@ -46,6 +56,7 @@ class CheckListViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
         ListCheckItem.remove(at: indexPath.row)
         tableView.deleteRows(at: [indexPath], with: UITableViewRowAnimation.none)
+        saveCheckListItems()
     }
     
     func configureCheckmark(for cell: CheckListItemCell, withItem item: CheckListItem){
@@ -55,18 +66,12 @@ class CheckListViewController: UITableViewController {
         else {
             cell.LabelCheck.isHidden = true;
         }
+        saveCheckListItems()
     }
     
     func configureText(for cell:CheckListItemCell, withItem item: CheckListItem){
         cell.LabelItem.text = item.text;
     }
-    
-    
-    /*@IBAction func addDummyTodo(_ sender: Any) {
-        ListCheckItem.append(CheckListItem(pText : "Faire le ménage"))
-        let index = IndexPath(item : ListCheckItem.count-1, section : 0)
-        tableView.insertRows(at: [index] , with: UITableViewRowAnimation.none)
-    }*/
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "addItem"{
@@ -80,6 +85,26 @@ class CheckListViewController: UITableViewController {
                 destVC.itemToEdit = ListCheckItem[(tableView.indexPath(for: cell)?.row)!]
                 destVC.delegate = self
             }
+        }
+    }
+    
+    func saveCheckListItems(){
+        let encoder = JSONEncoder()
+        encoder.outputFormatting = .prettyPrinted
+        
+        do {
+            let data = try encoder.encode(ListCheckItem)
+            try data.write(to: dataFileURL)
+        } catch {
+        }
+    }
+    
+    func loadCheckListItems(){
+        let decoder = JSONDecoder()
+        do {
+            let data = try String(contentsOf: dataFileURL, encoding: .utf8).data(using: .utf8)
+            ListCheckItem = try decoder.decode([CheckListItem].self, from: data!)
+        } catch {
         }
     }
 
@@ -96,12 +121,14 @@ extension CheckListViewController : ItemDetailViewControllerDelegate {
         ListCheckItem.append(item)
         let index = IndexPath(item : ListCheckItem.count-1, section : 0)
         tableView.insertRows(at: [index] , with: UITableViewRowAnimation.none)
+        saveCheckListItems()
     }
     
     func itemDetailViewController(_ controller: ItemDetailViewController, didFinishEditingItem item: CheckListItem) {
         controller.dismiss(animated: true)
         let index = IndexPath(item : ListCheckItem.index(where:{ $0 === item })!, section : 0)
         tableView.reloadRows(at: [index] , with: UITableViewRowAnimation.none)
+        saveCheckListItems()
     }
     
     
