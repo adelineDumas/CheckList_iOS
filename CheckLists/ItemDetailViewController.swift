@@ -8,9 +8,9 @@
 
 import UIKit
 
-class AddItemViewController: UITableViewController, UITextFieldDelegate {
+class ItemDetailViewController: UITableViewController, UITextFieldDelegate {
     
-    var delegate: AddItemViewControllerDelegate!
+    var delegate: ItemDetailViewControllerDelegate!
     var itemToEdit : CheckListItem!
     
     @IBOutlet weak var TextFieldSaisieItem: UITextField!
@@ -28,15 +28,15 @@ class AddItemViewController: UITableViewController, UITextFieldDelegate {
         if let item = TextFieldSaisieItem.text {
         if let edit = itemToEdit {
             itemToEdit.text = item
-            delegate.addItemViewController(self, didFinishEditingItem: itemToEdit)
+            delegate.itemDetailViewController(self, didFinishEditingItem: itemToEdit)
         } else {
-            delegate.addItemViewController(self, didFinishAddingItem: CheckListItem(pText: item))
+            delegate.itemDetailViewController(self, didFinishAddingItem: CheckListItem(pText: item))
             }
         }
     }
     
     @IBAction func cancel() {
-        delegate.addItemViewControllerDidCancel(self)
+        delegate.itemDetailViewControllerDidCancel(self)
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -65,10 +65,10 @@ func == (lhs: CheckListItem, rhs: CheckListItem) -> Bool {
     return (lhs.text == rhs.text)
 }
     
-protocol AddItemViewControllerDelegate : class {
-    func addItemViewControllerDidCancel(_ controller: AddItemViewController)
-    func addItemViewController(_ controller: AddItemViewController, didFinishAddingItem item: CheckListItem)
-    func addItemViewController(_ controller: AddItemViewController, didFinishEditingItem item: CheckListItem)
+protocol ItemDetailViewControllerDelegate : class {
+    func itemDetailViewControllerDidCancel(_ controller: ItemDetailViewController)
+    func itemDetailViewController(_ controller: ItemDetailViewController, didFinishAddingItem item: CheckListItem)
+    func itemDetailViewController(_ controller: ItemDetailViewController, didFinishEditingItem item: CheckListItem)
 
 }
 
