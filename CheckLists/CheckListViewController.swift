@@ -43,12 +43,17 @@ class CheckListViewController: UITableViewController {
         tableView.reloadRows(at: [indexPath], with: UITableViewRowAnimation.none)
     }
     
+    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
+        ListCheckItem.remove(at: indexPath.row)
+        tableView.deleteRows(at: [indexPath], with: UITableViewRowAnimation.none)
+    }
+    
     func configureCheckmark(for cell: UITableViewCell, withItem item: CheckListItem){
         if item.checked{
-            cell.isSelected = true;
+            cell.accessoryType = UITableViewCellAccessoryType.checkmark;
         }
         else {
-            cell.isSelected = false;
+            cell.accessoryType = UITableViewCellAccessoryType.none;
         }
     }
     
@@ -57,6 +62,11 @@ class CheckListViewController: UITableViewController {
     }
     
     
+    @IBAction func addDummyTodo(_ sender: Any) {
+        ListCheckItem.append(CheckListItem(pText : "Faire le ménage"))
+        let index = IndexPath(item : ListCheckItem.count-1, section : 0)
+        tableView.insertRows(at: [index] , with: UITableViewRowAnimation.none)
+    }
     
 
     
