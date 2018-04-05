@@ -19,6 +19,10 @@ class AllListViewController: UITableViewController {
         ListCheckList.append(CheckList(pName: "liste1"))
         ListCheckList.append(CheckList(pName: "liste2"))
         ListCheckList.append(CheckList(pName: "liste3"))
+        
+        for list in ListCheckList {
+            list.items.append(CheckListItem(pText : "Item for" + list.name  ))
+        }
     }
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -35,7 +39,7 @@ class AllListViewController: UITableViewController {
         if segue.identifier == "showCheckList" {
             if let destVC = segue.destination as? CheckListViewController  {
                 let cell = sender as! UITableViewCell
-                destVC.list = ListCheckList[(tableView.indexPath(for: cell)?.row)!]
+                destVC.ListCheckItem = ListCheckList[(tableView.indexPath(for: cell)?.row)!]
             }
         }
         else if segue.identifier == "addCheckList" {
