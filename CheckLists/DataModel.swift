@@ -12,7 +12,6 @@ class DataModel {
     
     var ListCheckList : Array<CheckList> = []
     static let sharedInstance = DataModel()
-    var firstLaunch : Bool = true
     
     var documentDirectory : URL = FileManager.default.urls(for: FileManager.SearchPathDirectory.documentDirectory, in: FileManager.SearchPathDomainMask.userDomainMask).first!
     var dataFileURL : URL = URL(fileURLWithPath: "")
@@ -45,9 +44,9 @@ class DataModel {
         } catch {
         }
         
-        if firstLaunch {
+        if Preferences.sharedInstance.firstLaunch {
             ListCheckList.append(CheckList(pName: "Edit your first item, Swipe me for delete"))
-            firstLaunch = false
+            Preferences.sharedInstance.firstLaunch = false
             saveCheckList()
             
         }

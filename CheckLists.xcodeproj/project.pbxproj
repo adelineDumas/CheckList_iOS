@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		B807193920766E1500F0EAE0 /* UserNotifications.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B807193820766E1400F0EAE0 /* UserNotifications.framework */; };
+		B807193B207678B100F0EAE0 /* Preferences.swift in Sources */ = {isa = PBXBuildFile; fileRef = B807193A207678B100F0EAE0 /* Preferences.swift */; };
 		B83BC42A2048558000A53F36 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B83BC4292048558000A53F36 /* AppDelegate.swift */; };
 		B83BC42C2048558000A53F36 /* CheckListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B83BC42B2048558000A53F36 /* CheckListViewController.swift */; };
 		B83BC42F2048558000A53F36 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B83BC42D2048558000A53F36 /* Main.storyboard */; };
@@ -24,6 +25,7 @@
 
 /* Begin PBXFileReference section */
 		B807193820766E1400F0EAE0 /* UserNotifications.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UserNotifications.framework; path = System/Library/Frameworks/UserNotifications.framework; sourceTree = SDKROOT; };
+		B807193A207678B100F0EAE0 /* Preferences.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Preferences.swift; sourceTree = "<group>"; };
 		B83BC4262048558000A53F36 /* CheckLists.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CheckLists.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B83BC4292048558000A53F36 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		B83BC42B2048558000A53F36 /* CheckListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckListViewController.swift; sourceTree = "<group>"; };
@@ -101,6 +103,7 @@
 				B89C8CB9206CF4C80053559C /* CheckListItemCell.swift */,
 				B89C8CBF206D30180053559C /* CheckList.swift */,
 				B8FF0C8320760E0A009A9DC9 /* DataModel.swift */,
+				B807193A207678B100F0EAE0 /* Preferences.swift */,
 			);
 			path = CheckLists;
 			sourceTree = "<group>";
@@ -183,6 +186,7 @@
 				B89C8CC0206D30180053559C /* CheckList.swift in Sources */,
 				B89C8CBA206CF4C80053559C /* CheckListItemCell.swift in Sources */,
 				B83BC42C2048558000A53F36 /* CheckListViewController.swift in Sources */,
+				B807193B207678B100F0EAE0 /* Preferences.swift in Sources */,
 				B83BC42A2048558000A53F36 /* AppDelegate.swift in Sources */,
 				B89C8CC2206D39840053559C /* ListDetailViewController.swift in Sources */,
 				B8FF0C8420760E0A009A9DC9 /* DataModel.swift in Sources */,
