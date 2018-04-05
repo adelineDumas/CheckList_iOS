@@ -18,6 +18,7 @@
 		B89C8CBE206D2B030053559C /* AllListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B89C8CBD206D2B030053559C /* AllListViewController.swift */; };
 		B89C8CC0206D30180053559C /* CheckList.swift in Sources */ = {isa = PBXBuildFile; fileRef = B89C8CBF206D30180053559C /* CheckList.swift */; };
 		B89C8CC2206D39840053559C /* ListDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B89C8CC1206D39840053559C /* ListDetailViewController.swift */; };
+		B8FF0C8420760E0A009A9DC9 /* DataModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8FF0C8320760E0A009A9DC9 /* DataModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -34,6 +35,7 @@
 		B89C8CBD206D2B030053559C /* AllListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AllListViewController.swift; sourceTree = "<group>"; };
 		B89C8CBF206D30180053559C /* CheckList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckList.swift; sourceTree = "<group>"; };
 		B89C8CC1206D39840053559C /* ListDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListDetailViewController.swift; sourceTree = "<group>"; };
+		B8FF0C8320760E0A009A9DC9 /* DataModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -78,6 +80,7 @@
 				B89C8CBD206D2B030053559C /* AllListViewController.swift */,
 				B89C8CBF206D30180053559C /* CheckList.swift */,
 				B89C8CC1206D39840053559C /* ListDetailViewController.swift */,
+				B8FF0C8320760E0A009A9DC9 /* DataModel.swift */,
 			);
 			path = CheckLists;
 			sourceTree = "<group>";
@@ -162,6 +165,7 @@
 				B83BC42C2048558000A53F36 /* CheckListViewController.swift in Sources */,
 				B83BC42A2048558000A53F36 /* AppDelegate.swift in Sources */,
 				B89C8CC2206D39840053559C /* ListDetailViewController.swift in Sources */,
+				B8FF0C8420760E0A009A9DC9 /* DataModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

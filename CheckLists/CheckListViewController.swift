@@ -11,19 +11,8 @@ import UIKit
 class CheckListViewController: UITableViewController {
     
     //var ListCheckItem : Array<CheckListItem> = []
-    
-    //var documentDirectory : URL = FileManager.default.urls(for: FileManager.SearchPathDirectory.documentDirectory, in: FileManager.SearchPathDomainMask.userDomainMask).first!
-    //var dataFileURL : URL = URL(fileURLWithPath: "")
-    
+
     var ListCheckItem : CheckList!
-    
-    required init?(coder aDecoder: NSCoder) {
-        super.init(coder: aDecoder)
-        
-        //let file = "data.json"
-        //dataFileURL = documentDirectory.appendingPathComponent(file)
-        //self.loadCheckListItems()
-    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -33,7 +22,6 @@ class CheckListViewController: UITableViewController {
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
     }
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -56,7 +44,6 @@ class CheckListViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
         ListCheckItem.items.remove(at: indexPath.row)
         tableView.deleteRows(at: [indexPath], with: UITableViewRowAnimation.none)
-        //saveCheckListItems()
     }
     
     func configureCheckmark(for cell: CheckListItemCell, withItem item: CheckListItem){
@@ -66,7 +53,6 @@ class CheckListViewController: UITableViewController {
         else {
             cell.LabelCheck.isHidden = true;
         }
-        //saveCheckListItems()
     }
     
     func configureText(for cell:CheckListItemCell, withItem item: CheckListItem){
@@ -87,28 +73,7 @@ class CheckListViewController: UITableViewController {
             }
         }
     }
-    
-    /*func saveCheckListItems(){
-        let encoder = JSONEncoder()
-        encoder.outputFormatting = .prettyPrinted
-        
-        do {
-            let data = try encoder.encode(ListCheckItem)
-            try data.write(to: dataFileURL)
-        } catch {
-        }
-    }*/
-    
-    /*func loadCheckListItems(){
-        let decoder = JSONDecoder()
-        do {
-            let data = try String(contentsOf: dataFileURL, encoding: .utf8).data(using: .utf8)
-            ListCheckItem = try decoder.decode([CheckListItem].self, from: data!)
-        } catch {
-        }
-    }*/
-
-}
+    }
 
 
 extension CheckListViewController : ItemDetailViewControllerDelegate {
@@ -121,14 +86,12 @@ extension CheckListViewController : ItemDetailViewControllerDelegate {
         ListCheckItem.items.append(item)
         let index = IndexPath(item : ListCheckItem.items.count-1, section : 0)
         tableView.insertRows(at: [index] , with: UITableViewRowAnimation.none)
-        //saveCheckListItems()
     }
     
     func itemDetailViewController(_ controller: ItemDetailViewController, didFinishEditingItem item: CheckListItem) {
         controller.dismiss(animated: true)
         let index = IndexPath(item : ListCheckItem.items.index(where:{ $0 === item })!, section : 0)
         tableView.reloadRows(at: [index] , with: UITableViewRowAnimation.none)
-        //saveCheckListItems()
     }
     
     
