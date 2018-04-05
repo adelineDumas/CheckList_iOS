@@ -12,6 +12,7 @@ class DataModel {
     
     var ListCheckList : Array<CheckList> = []
     static let sharedInstance = DataModel()
+    var firstLaunch : Bool = true
     
     var documentDirectory : URL = FileManager.default.urls(for: FileManager.SearchPathDirectory.documentDirectory, in: FileManager.SearchPathDomainMask.userDomainMask).first!
     var dataFileURL : URL = URL(fileURLWithPath: "")
@@ -43,9 +44,17 @@ class DataModel {
             ListCheckList = try decoder.decode([CheckList].self, from: data!)
         } catch {
         }
+        
+        if firstLaunch {
+            ListCheckList.append(CheckList(pName: "Edit your first item, Swipe me for delete"))
+            firstLaunch = false
+            saveCheckList()
+            
+        }
     }
     
     func sortCheckList(){
         ListCheckList = ListCheckList.sorted{ $0.name.localizedStandardCompare($1.name) == .orderedAscending }
     }
+
 }

@@ -18,6 +18,7 @@ class CheckListViewController: UITableViewController {
         super.viewDidLoad()
         
         self.navigationItem.title = ListCheckItem.name
+        self.view.tintColor = UIColor.gray
     }
     
     override func didReceiveMemoryWarning() {

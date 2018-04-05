@@ -18,7 +18,7 @@ class CheckList : Codable{
         return items.filter{ !$0.checked }.count
     }
     
-    init(pName : String, pItems : Array<CheckListItem> = [], icon : IconAsset) {
+    init(pName : String, pItems : Array<CheckListItem> = [], icon : IconAsset = .Folder) {
         self.name = pName
         self.items = pItems
         self.icon = icon

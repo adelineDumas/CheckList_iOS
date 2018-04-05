@@ -375,4 +375,5 @@
         <segue reference="g3P-g8-ELF"/>
         <segue reference="ESe-q5-BwK"/>
     </inferredMetricsTieBreakers>
+    <color key="tintColor" red="0.0" green="0.56904578210000001" blue="0.57461684940000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
 </document>
