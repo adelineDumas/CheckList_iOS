@@ -14,10 +14,27 @@ class AllListViewController: UITableViewController {
     required init(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)!
         DataModel.sharedInstance.loadCheckList()
+        DataModel.sharedInstance.sortCheckList()
+    }
+    
+    func configureDetailTitle(_ cell: UITableViewCell, _ item: CheckList){
+        if(item.items.count == 0){
+            cell.detailTextLabel?.text = "No Item"
+        } else if(item.uncheckedItemsCount == 0){
+            cell.detailTextLabel?.text = "All Done!"
+        } else {
+            cell.detailTextLabel?.text = String(item.uncheckedItemsCount) + "/" + String(item.items.count)
+        }
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        self.tableView.reloadData()
+        
     }
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -27,6 +44,8 @@ class AllListViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "ListCheckList", for: indexPath)
         cell.textLabel?.text = DataModel.sharedInstance.ListCheckList[indexPath.row].name
+        configureDetailTitle(cell, DataModel.sharedInstance.ListCheckList[indexPath.row])
+        cell.imageView?.image = DataModel.sharedInstance.ListCheckList[indexPath.row].icon.image
         return cell
     }
     
@@ -70,6 +89,7 @@ extension AllListViewController : ListDetailViewControllerDelegate {
         DataModel.sharedInstance.ListCheckList.append(item)
         let index = IndexPath(item : DataModel.sharedInstance.ListCheckList.count-1, section : 0)
         tableView.insertRows(at: [index] , with: UITableViewRowAnimation.none)
+        DataModel.sharedInstance.sortCheckList()
         DataModel.sharedInstance.saveCheckList()
     }
     
@@ -77,6 +97,7 @@ extension AllListViewController : ListDetailViewControllerDelegate {
         controller.dismiss(animated: true)
         let index = IndexPath(item : DataModel.sharedInstance.ListCheckList.index(where:{ $0 === item })!, section : 0)
         tableView.reloadRows(at: [index] , with: UITableViewRowAnimation.none)
+        DataModel.sharedInstance.sortCheckList()
         DataModel.sharedInstance.saveCheckList()
     }
     
